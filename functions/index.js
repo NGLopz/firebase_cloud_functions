@@ -24,9 +24,11 @@ async function connect() {
 // =======================
 exports.createUserProfile = beforeUserCreated(async (event) => {
   const user = event.data;
-
+  console.log("USUARIO ENTIDAD COMPLETA", user);
   console.log("🔥 NUEVO USUARIO DETECTADO (beforeUserCreated)");
   console.log("👉 UID:", user.uid);
+  console.log("👉 NAME:", user.displayName);
+  console.log("👉 PHONE:", user.phoneNumber);
   console.log("👉 EMAIL:", user.email);
 
   try {
@@ -40,6 +42,9 @@ exports.createUserProfile = beforeUserCreated(async (event) => {
         $setOnInsert: {
           uid: user.uid,
           email: user.email || null,
+          name: user.displayName || null,
+          phone: user.phoneNumber || null,
+          provider: user.firebase?.sign_in_provider || null,
           createdAt: new Date(),
         },
       },
