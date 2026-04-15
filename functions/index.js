@@ -44,7 +44,7 @@ exports.createUserProfile = beforeUserCreated(async (event) => {
           email: user.email || '',
           name: user.displayName || '',
           phone: user.phoneNumber || '',
-          provider: user.providerData[0].providerId || '',
+          provider: (user.providerData && user.providerData.length > 0) ? user.providerData[0].providerId : 'password',
           createdAt: new Date(),
         },
       },
