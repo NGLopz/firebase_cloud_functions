@@ -30,7 +30,6 @@ exports.createUserProfile = beforeUserCreated(async (event) => {
   console.log("👉 NAME:", user.displayName);
   console.log("👉 PHONE:", user.phoneNumber);
   console.log("👉 EMAIL:", user.email);
-  console.log("👉 firebase:", user.firebase);
 
   try {
     const mongoClient = await connect();
