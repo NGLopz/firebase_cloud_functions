@@ -30,6 +30,7 @@ exports.createUserProfile = beforeUserCreated(async (event) => {
   console.log("👉 NAME:", user.displayName);
   console.log("👉 PHONE:", user.phoneNumber);
   console.log("👉 EMAIL:", user.email);
+  console.log("👉 firebase:", user.firebase);
 
   try {
     const mongoClient = await connect();
@@ -41,10 +42,10 @@ exports.createUserProfile = beforeUserCreated(async (event) => {
       {
         $setOnInsert: {
           uid: user.uid,
-          email: user.email || null,
-          name: user.displayName || null,
-          phone: user.phoneNumber || null,
-          provider: user.firebase?.sign_in_provider || null,
+          email: user.email || '',
+          name: user.displayName || '',
+          phone: user.phoneNumber || '',
+          provider: user.providerData[0].providerId || '',
           createdAt: new Date(),
         },
       },
