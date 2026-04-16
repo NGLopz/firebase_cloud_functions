@@ -26,10 +26,10 @@ exports.completeProfile = onCall(async (request) => {
       { uid: uid },
       {
         $set: {
-          email: token.email || null,
-          name: name || null,
-          lastname: lastname || null,
-          phone: phone || null,
+          email: token.email || "",
+          name: name || "",
+          lastname: lastname || "",
+          phone: phone || "",
           updatedAt: new Date(),
         },
         $setOnInsert: {
